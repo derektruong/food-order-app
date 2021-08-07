@@ -3,6 +3,7 @@ import React from "react";
 import {
     chakra,
     useColorModeValue,
+	useDisclosure,
     VisuallyHidden,
     Button,
     Avatar,
@@ -12,15 +13,18 @@ import {
     MenuList,
     Icon,
 } from "@chakra-ui/react";
-import {
-    AiFillBell,
-} from "react-icons/ai";
+import { AiFillBell } from "react-icons/ai";
 
 import { RiShoppingCartLine } from "react-icons/ri";
 
+import CartList from "../../UI/CartList";
+
 const LoginBar = (props) => {
+	const { isOpen, onOpen, onClose } = useDisclosure();
+
     return (
         <>
+			<CartList  minW="600px" isOpen={isOpen} onClose={onClose} cartList={props.cart}/>
             <chakra.a
                 p={2}
                 color={useColorModeValue("gray.800", "inherit")}
@@ -32,12 +36,9 @@ const LoginBar = (props) => {
                 <chakra.span
                     pos="relative"
                     display="inline-block"
-                    onClick={() => alert("cart is clicked")}
+                    onClick={onOpen}
                 >
-                    <Icon
-						as={RiShoppingCartLine}
-                        boxSize={5}
-                    />
+                    <Icon as={RiShoppingCartLine} boxSize={5} />
 
                     <chakra.span
                         pos="absolute"
@@ -53,7 +54,7 @@ const LoginBar = (props) => {
                         bg="red.600"
                         rounded="full"
                     >
-                        99
+                        {props.cart.length}
                     </chakra.span>
                 </chakra.span>
             </chakra.a>

@@ -65,15 +65,16 @@ const Carousel = () => {
     return (
         <Flex
             w="full"
-            bg={useColorModeValue("gray.200", "gray.800")}
+            bg={useColorModeValue("white", "gray.800")}
             p={8}
             marginTop={16}
             alignItems="center"
             justifyContent="center"
+			px={{ base: "2%", md: "20%" }}
         >
             <Flex alignItems="center" w="full" overflow="hidden" pos="relative">
                 <Flex
-                    h={{ base: "40vh", md: "85vh" }}
+                    h={{ base: "40vh", md: "60vh" }}
                     w="full"
                     {...carouselStyle}
                 >
@@ -114,7 +115,7 @@ const Carousel = () => {
                 justifyContent="flex-end"
                 pos="absolute"
                 // left={{ base: "5%", md: "30%" }}
-                top={{ base: "35vh", md: "80vh" }}
+                top={{ base: "35vh", md: "50vh" }}
                 w={{ base: "80vw", md: "500px" }}
                 mx="auto"
                 py={4}
@@ -122,7 +123,7 @@ const Carousel = () => {
                 bg={useColorModeValue("white", "gray.800")}
                 shadow="lg"
                 rounded="lg"
-                zIndex="modal"
+                zIndex="docked"
             >
                 <Flex justifyContent="center" mt={-16}>
                     <Image

@@ -1,8 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import {
     chakra,
     Text,
-    Box,
     Image,
     Flex,
     useColorModeValue,
@@ -13,62 +12,117 @@ import {
     NumberIncrementStepper,
     NumberDecrementStepper,
 } from "@chakra-ui/react";
+import { StarIcon } from "@chakra-ui/icons";
 
 const FoodItem = (props) => {
+
+	const [amountState, setAmountState] = useState(1);
+
+
+	const changeAmountHandler = (amount) => {
+		setAmountState(amount);
+	}
+
+	const clickAddHandler = () => {
+		const cartItem = {
+			id: props.id,
+			name: props.name,
+			image: props.image,
+			amount: amountState,
+			price: +props.price * amountState,
+		}
+
+		props.onAddToCard(cartItem);
+	}
+
     return (
         <Flex
             flexDirection="column"
             maxW="xs"
             mx="auto"
-            bg={useColorModeValue("gray.200", "gray.700")}
-            shadow="lg"
+			mb={6}
+            bg={useColorModeValue("teal.200", "gray.700")}
+			boxShadow="white-lg"
             rounded="lg"
         >
-            <Box px={4} py={2}>
+			{/* Part: name of food and description of food */}
+            <Flex px={4} py={2} flexDirection="column">
                 <chakra.h1
                     color={useColorModeValue("gray.800", "white")}
                     fontWeight="bold"
-                    fontSize={{ base: "18px", md: "28px" }}
+                    fontSize={{ base: "14px", md: "20px" }}
                     textTransform="uppercase"
+                    minH={{ base: "42px", md: "60px" }}
                 >
-                    NIKE AIR
+                    {props.name}
                 </chakra.h1>
                 <Text
-                    mt={1}
-                    fontSize={{ base: "10px", md: "15px" }}
+                    // mt={1}
+                    fontSize={{ base: "12px", md: "15px" }}
                     color={useColorModeValue("gray.600", "gray.400")}
-                    noOfLines={[1, 2, 3]}
+                    noOfLines={[1, 2]}
+                    minH={{ base: "36px", md: "50px" }}
+                    flexGrow="1"
                 >
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Modi quos quidem sequi illum facere recusandae voluptatibus
+                    {props.description}
                 </Text>
-            </Box>
+            </Flex>
 
+			{/* Part: Image of food */}
             <Image
-                h={48}
+                minH="200px"
+                maxH="200px"
                 w="full"
                 fit="cover"
                 mt={2}
-                src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=320&q=80"
-                alt="NIKE AIR"
+                src={props.image}
+                alt="NaN"
             />
-            <HStack justify="flex-end" w="full" my="10px">
-                <NumberInput
-                    minW="50px"
-                    maxW="80px"
-                    mr="15px"
-                    defaultValue={1}
-                    min={1}
-                    max={20}
-					
+
+			{/* Part: review and change number of foods */}
+            <Flex>
+                <HStack
+                    spacing={1}
+                    justify="flex-start"
+                    display="flex"
+                    alignItems="center"
+                    ml="15px"
                 >
-                    <NumberInputField bg={useColorModeValue("gray.400", "gray.700")}/>
-                    <NumberInputStepper>
-                        <NumberIncrementStepper />
-                        <NumberDecrementStepper />
-                    </NumberInputStepper>
-                </NumberInput>
-            </HStack>
+                    <StarIcon
+                        color={useColorModeValue("gray.700", "gray.300")}
+                    />
+                    <StarIcon
+                        color={useColorModeValue("gray.700", "gray.300")}
+                    />
+                    <StarIcon
+                        color={useColorModeValue("gray.700", "gray.300")}
+                    />
+                    <StarIcon color="gray.500" />
+                    <StarIcon color="gray.500" />
+                </HStack>
+
+                <HStack justify="flex-end" w="full" my="10px">
+                    <NumberInput
+                        minW="50px"
+                        maxW="80px"
+                        mr="15px"
+                        defaultValue={1}
+                        min={1}
+                        max={20}
+						onChange={changeAmountHandler}
+                    >
+                        <NumberInputField
+                            bg={useColorModeValue("teal.300", "gray.700")}
+                        />
+                        <NumberInputStepper>
+                            <NumberIncrementStepper />
+                            <NumberDecrementStepper />
+                        </NumberInputStepper>
+                    </NumberInput>
+                </HStack>
+            </Flex>
+
+			{/* Part: price and button add to cart */}
             <Flex
                 alignItems="center"
                 justifyContent="space-between"
@@ -78,7 +132,7 @@ const FoodItem = (props) => {
                 roundedBottom="lg"
             >
                 <chakra.h1 color="white" fontWeight="bold" fontSize="lg">
-                    $129
+                    ${props.price}
                 </chakra.h1>
 
                 <chakra.button
@@ -96,6 +150,8 @@ const FoodItem = (props) => {
                     _focus={{
                         bg: "gray.400",
                     }}
+
+					onClick={clickAddHandler}
                 >
                     <Text fontSize={{ base: "7px", md: "11px" }}>
                         Add to cart

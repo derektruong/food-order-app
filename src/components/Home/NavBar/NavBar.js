@@ -34,6 +34,8 @@ const NavBar = (props) => {
     const bg = useColorModeValue("#ecefff", "gray.800");
     const mobileNav = useDisclosure();
 
+	console.log(props.cart);
+
     return (
         <React.Fragment>
             <chakra.header
@@ -117,6 +119,7 @@ const NavBar = (props) => {
                                 boxSize={8}
                                 color="red.400"
                                 marginBottom={1}
+								marginRight={2}
                             />
 
                             <VisuallyHidden>Choc</VisuallyHidden>
@@ -165,7 +168,7 @@ const NavBar = (props) => {
 
                         {/* Authenticated */}
 
-                        <LoginBar />
+                        <LoginBar cart={props.cart}/>
                         {/* <LogoutBar /> */}
 
                         {/* done */}
