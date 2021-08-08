@@ -70,7 +70,7 @@ const Carousel = () => {
             marginTop={16}
             alignItems="center"
             justifyContent="center"
-			px={{ base: "2%", md: "20%" }}
+			px={{ base: "2%", md: "10%", lg: "20%" }}
         >
             <Flex alignItems="center" w="full" overflow="hidden" pos="relative">
                 <Flex

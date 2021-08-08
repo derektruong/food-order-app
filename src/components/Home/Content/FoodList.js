@@ -34,13 +34,13 @@ const FoodList = (props) => {
     }, []);
 
     return (
-        <Box my={48} w="full" px={{ base: "1%", md: "20%" }}>
+        <Box my={48} w="full" px={{ base: "2%", md: "10%", lg: "20%" }}>
             {isLoading ? (
                 <Progress size="lg" isIndeterminate />
             ) : (
                 <SimpleGrid
-                    minChildWidth={{ base: "200px", md: "300px" }}
-                    spacing="35px"
+                    minChildWidth={{ base: "200px", md: "250px", lg: "300px" }}
+                    spacing={{ base: "15px", md: "25px", lg: "35px" }}
                 >
                     {foodList.map((item) => {
                         return (

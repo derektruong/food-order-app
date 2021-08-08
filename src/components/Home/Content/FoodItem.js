@@ -41,8 +41,8 @@ const FoodItem = (props) => {
             maxW="xs"
             mx="auto"
 			mb={6}
-            bg={useColorModeValue("teal.200", "gray.700")}
-			boxShadow="white-lg"
+            bg={useColorModeValue("gray.50", "gray.700")}
+			boxShadow="dark-lg"
             rounded="lg"
         >
 			{/* Part: name of food and description of food */}
@@ -112,7 +112,7 @@ const FoodItem = (props) => {
 						onChange={changeAmountHandler}
                     >
                         <NumberInputField
-                            bg={useColorModeValue("teal.300", "gray.700")}
+                            bg={useColorModeValue("gray.50", "gray.700")}
                         />
                         <NumberInputStepper>
                             <NumberIncrementStepper />
