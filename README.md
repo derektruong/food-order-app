@@ -39,6 +39,37 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+
+# food-order-app
+
+Food order application with react and golang.
+
+## Preview
+
+### Dark/light switch mode
+![home1](https://github.com/derektruong/food-order-app/blob/master/public/assets/screenshot/1.png?raw=true)
+
+------------
+
+![home2](https://github.com/derektruong/food-order-app/blob/master/public/assets/screenshot/2.png?raw=true)
+
+------------
+
+![home3](https://github.com/derektruong/food-order-app/blob/master/public/assets/screenshot/3.png?raw=true)
+
+------------
+
+![home4](https://github.com/derektruong/food-order-app/blob/master/public/assets/screenshot/4.png?raw=true)
+
+<hr>
+<h2>Start here!</h3>
+<pre><code>
+  $ git clone https://github.com/derektruong/food-order-app.git<br>
+  $ cd /food-order-app
+  $ npm run start
+  # Visit http://localhost:3000
+</pre></code>
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
@@ -66,7 +97,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/a
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
 ### `npm run build` fails to minify
-
-# food-order-app
-
-Food order application with react and golang.
