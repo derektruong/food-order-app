@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import {
     chakra,
     Text,
@@ -13,9 +13,10 @@ import {
     NumberDecrementStepper,
 } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
+import CartContext from "../../../store/cart-context";
 
 const FoodItem = (props) => {
-
+	const ctx = useContext(CartContext);
 	const [amountState, setAmountState] = useState(1);
 
 
@@ -29,10 +30,11 @@ const FoodItem = (props) => {
 			name: props.name,
 			image: props.image,
 			amount: amountState,
-			price: +props.price * amountState,
+			price: +props.price,
 		}
 
-		props.onAddToCard(cartItem);
+		// props.onAddToCard(cartItem);
+		ctx.addItem(cartItem);
 	}
 
     return (
@@ -42,7 +44,7 @@ const FoodItem = (props) => {
             mx="auto"
 			mb={6}
             bg={useColorModeValue("gray.50", "gray.700")}
-			boxShadow="dark-lg"
+			boxShadow="2xl"
             rounded="lg"
         >
 			{/* Part: name of food and description of food */}

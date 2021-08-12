@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 
 import {
     chakra,
@@ -18,8 +18,10 @@ import { AiFillBell } from "react-icons/ai";
 import { RiShoppingCartLine } from "react-icons/ri";
 
 import CartList from "../../UI/CartList";
+import CartContext from "../../../store/cart-context"
 
 const LoginBar = (props) => {
+	const ctx = useContext(CartContext);
 	const { isOpen, onOpen, onClose } = useDisclosure();
 
     return (
@@ -49,12 +51,12 @@ const LoginBar = (props) => {
                         fontSize="xs"
                         fontWeight="bold"
                         lineHeight="none"
-                        color="red.100"
+                        color="black"
                         transform="translate(50%,-50%)"
-                        bg="red.600"
+                        bg="yellow.300"
                         rounded="full"
                     >
-                        {props.cart.length}
+                        {ctx.cartList.length}
                     </chakra.span>
                 </chakra.span>
             </chakra.a>

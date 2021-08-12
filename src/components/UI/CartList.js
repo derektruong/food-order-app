@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import {
     Modal,
@@ -9,7 +9,6 @@ import {
     ModalBody,
     ModalCloseButton,
     Button,
-    useDisclosure,
     Table,
     Thead,
     Tbody,
@@ -20,12 +19,13 @@ import {
 } from "@chakra-ui/react";
 
 import CartItem from "./CartItem";
+import CartContext from "../../store/cart-context";
 
 const CartList = (props) => {
-    
-	const totalPrice = props.cartList.reduce((totalPrice, item) => {
-		return totalPrice + (+item.price);
-	}, 0);
+    const ctx = useContext(CartContext);
+    const totalPrice = ctx.cartList.reduce((totalPrice, item) => {
+        return totalPrice + +item.price * +item.amount;
+    }, 0);
 
     return (
         <Modal
@@ -46,13 +46,15 @@ const CartList = (props) => {
                                 <Th>Name</Th>
                                 <Th>Price</Th>
                                 <Th>Amount</Th>
+                                <Th></Th>
                             </Tr>
                         </Thead>
                         <Tbody>
-                            {props.cartList.map((item) => {
+                            {ctx.cartList.map((item) => {
                                 return (
                                     <CartItem
                                         key={item.id}
+                                        id={item.id}
                                         image={item.image}
                                         name={item.name}
                                         price={item.price}
@@ -67,11 +69,15 @@ const CartList = (props) => {
                                 <Th></Th>
                                 <Th>Total</Th>
                                 <Th></Th>
+                                <Th></Th>
                             </Tr>
                             <Tr>
                                 <Td></Td>
                                 <Td></Td>
-                                <Td fontWeight="bold" fontSize="22px">${totalPrice}</Td>
+                                <Td fontWeight="bold" fontSize="22px">
+                                    ${totalPrice}
+                                </Td>
+                                <Td></Td>
                                 <Td></Td>
                             </Tr>
                         </Tfoot>
@@ -80,7 +86,7 @@ const CartList = (props) => {
 
                 <ModalFooter>
                     <Button colorScheme="blue" mr={3}>
-                        Save
+                        Order Now
                     </Button>
                     <Button onClick={props.onClose}>Cancel</Button>
                 </ModalFooter>

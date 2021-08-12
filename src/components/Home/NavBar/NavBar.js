@@ -10,6 +10,7 @@ import {
     HStack,
     Button,
     useDisclosure,
+    useMediaQuery,
     VStack,
     IconButton,
     CloseButton,
@@ -30,23 +31,24 @@ import LogoutBar from "./LogoutBar";
 const NavBar = (props) => {
     const { toggleColorMode } = useColorMode();
 
-	const SwitchIcon = useColorModeValue(FaMoon, FaSun);
+    const SwitchIcon = useColorModeValue(FaMoon, FaSun);
     const bg = useColorModeValue("#ecefff", "gray.800");
     const mobileNav = useDisclosure();
+    const [isMobileView] = useMediaQuery("(min-width: 500px)");
 
-	console.log(props.cart);
+    console.log(props.cart);
 
     return (
         <React.Fragment>
             <chakra.header
-				pos="fixed"
-				top={0}
+                pos="fixed"
+                top={0}
                 bg={bg}
                 w="full"
                 px={{ base: 2, sm: 4 }}
-                py={4}
+                py={2}
                 shadow="md"
-				zIndex="modal"
+                zIndex="modal"
             >
                 <Flex
                     alignItems="center"
@@ -66,7 +68,7 @@ const NavBar = (props) => {
                             />
                             <VStack
                                 pos="absolute"
-								w="full"
+                                w="full"
                                 top={0}
                                 left={0}
                                 right={0}
@@ -79,7 +81,7 @@ const NavBar = (props) => {
                                 spacing={3}
                                 rounded="sm"
                                 shadow="sm"
-								zIndex="modal"
+                                zIndex="modal"
                             >
                                 <CloseButton
                                     aria-label="Close menu"
@@ -110,19 +112,20 @@ const NavBar = (props) => {
                         </Box>
                         <chakra.a
                             href="/"
-                            title="Choc Home Page"
+                            title="Food Order Page"
                             display="flex"
-                            alignItems="center"
+                            alignItems={{ base: "flex-start", md: "center" }}
+                            ml="-12px"
                         >
                             <Icon
                                 as={IoFastFoodSharp}
-                                boxSize={8}
+                                boxSize={{ base: 5, md: 8 }}
                                 color="red.400"
                                 marginBottom={1}
-								marginRight={2}
+                                marginRight={2}
                             />
 
-                            <VisuallyHidden>Choc</VisuallyHidden>
+                            <VisuallyHidden>Food</VisuallyHidden>
                         </chakra.a>
 
                         <HStack
@@ -159,16 +162,25 @@ const NavBar = (props) => {
                         alignItems="center"
                     >
                         <InputGroup>
-                            <InputLeftElement
-                                pointerEvents="none"
-                                children={<AiOutlineSearch />}
+                            {isMobileView && (
+                                <InputLeftElement
+                                    // display={{ base: "none", md: "flex" }}
+                                    pointerEvents="none"
+                                    children={<AiOutlineSearch />}
+                                />
+                            )}
+
+                            <Input
+                                 px={isMobileView ? 0 : 2}
+                                fontSize={{ base: "12px", md: "15px" }}
+                                type="tel"
+                                placeholder="Search"
                             />
-                            <Input type="tel" placeholder="Search..." />
                         </InputGroup>
 
                         {/* Authenticated */}
 
-                        <LoginBar cart={props.cart}/>
+                        <LoginBar cart={props.cart} />
                         {/* <LogoutBar /> */}
 
                         {/* done */}

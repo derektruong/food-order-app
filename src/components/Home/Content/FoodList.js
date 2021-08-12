@@ -39,7 +39,7 @@ const FoodList = (props) => {
                 <Progress size="lg" isIndeterminate />
             ) : (
                 <SimpleGrid
-                    minChildWidth={{ base: "200px", md: "250px", lg: "300px" }}
+                    minChildWidth={{ base: "225px", md: "250px", lg: "300px" }}
                     spacing={{ base: "15px", md: "25px", lg: "35px" }}
                 >
                     {foodList.map((item) => {
@@ -51,7 +51,6 @@ const FoodList = (props) => {
                                     description={item.description}
                                     image={item.image}
                                     price={item.price}
-                                    onAddToCard={props.onAddToCard}
                                 />
                             </Box>
                         );
