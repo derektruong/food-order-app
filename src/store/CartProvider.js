@@ -3,6 +3,7 @@ import CartContext from "./cart-context";
 
 const CartContextProvider = (props) => {
     const [cartList, setCartList] = useState([]);
+	const [isCartChange, setIsCartChange] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0);
 
     const addItemToCartHandler = (newItem) => {
@@ -22,10 +23,19 @@ const CartContextProvider = (props) => {
             setTotalPrice((prevTotalPrice) => {
                 return prevTotalPrice + +newItem.price * +newItem.amount;
             });
+			setIsCartChange(true);
+
+			setTimeout(() => {
+				setIsCartChange(false);
+			}, 7000);
 
             return [...prevCartItem, newItem];
         });
     };
+
+	const onPopoverHandler = () => {
+		setIsCartChange(false);
+	}
 
     const onChangeAmountHandler = (id, amount) => {
         for (let i = 0; i < cartList.length; i++) {
@@ -53,6 +63,8 @@ const CartContextProvider = (props) => {
 
     const cartContext = {
         cartList: cartList,
+		isCartChange: isCartChange,
+		popoverHandler: onPopoverHandler,
         totalPrice: totalPrice,
         addItem: addItemToCartHandler,
         changeAmountHandler: onChangeAmountHandler,

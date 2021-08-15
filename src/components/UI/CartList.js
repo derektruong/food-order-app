@@ -42,11 +42,11 @@ const CartList = (props) => {
                     <Table variant="simple">
                         <Thead>
                             <Tr>
-                                <Th>Figure</Th>
-                                <Th>Name</Th>
-                                <Th>Price</Th>
-                                <Th>Amount</Th>
-                                <Th></Th>
+                                <Th px={{ base: "5px" }}>Figure</Th>
+                                <Th px={{ base: "5px" }}>Name</Th>
+                                <Th px={{ base: "5px" }} isNumeric>Price</Th>
+                                <Th px={{ base: "5px" }}>Amount</Th>
+                                <Th px={{ base: "5px" }}></Th>
                             </Tr>
                         </Thead>
                         <Tbody>
@@ -65,20 +65,25 @@ const CartList = (props) => {
                         </Tbody>
                         <Tfoot>
                             <Tr>
-                                <Th></Th>
-                                <Th></Th>
-                                <Th>Total</Th>
-                                <Th></Th>
-                                <Th></Th>
+                                <Th px={{ base: "5px" }}></Th>
+                                <Th px={{ base: "5px" }}></Th>
+                                <Th px={{ base: "5px" }} isNumeric>Total</Th>
+                                <Th px={{ base: "5px" }}></Th>
+                                <Th px={{ base: "5px" }}></Th>
                             </Tr>
                             <Tr>
-                                <Td></Td>
-                                <Td></Td>
-                                <Td fontWeight="bold" fontSize="22px">
+                                <Td px={{ base: "5px" }}></Td>
+                                <Td px={{ base: "5px" }}></Td>
+                                <Td
+                                    fontWeight="bold"
+                                    fontSize="22px"
+                                    px={{ base: "5px" }}
+									isNumeric
+                                >
                                     ${totalPrice}
                                 </Td>
-                                <Td></Td>
-                                <Td></Td>
+                                <Td px={{ base: "5px" }}></Td>
+                                <Td px={{ base: "5px" }}></Td>
                             </Tr>
                         </Tfoot>
                     </Table>
