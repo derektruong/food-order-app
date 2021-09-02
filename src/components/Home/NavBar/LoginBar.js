@@ -24,8 +24,7 @@ import {
 import { AiFillBell } from "react-icons/ai";
 
 import { RiShoppingCartLine } from "react-icons/ri";
-
-import CartList from "../../UI/CartList";
+import Cart from "../../UI/Cart";
 import CartContext from "../../../store/cart-context";
 
 const LoginBar = (props) => {
@@ -35,17 +34,15 @@ const LoginBar = (props) => {
     const closePopover = () => ctx.popoverHandler();
     return (
         <>
-            <CartList
-                minW="600px"
+            <Cart
                 isOpen={isOpen}
                 onClose={onClose}
-                cartList={props.cart}
             />
+
             <Popover
                 isOpen={ctx.isCartChange}
                 onClose={closePopover}
                 closeOnBlur={true}
-                
             >
                 <PopoverTrigger>
                     <chakra.a

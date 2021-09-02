@@ -1,41 +1,47 @@
 import React, { useState, useEffect } from "react";
-import { Box, SimpleGrid, Progress } from "@chakra-ui/react";
-
+import { Box, SimpleGrid, Progress, Text } from "@chakra-ui/react";
 import FoodItem from "./FoodItem";
+import useHttp from "../../../hooks/use-http";
 
 const FoodList = (props) => {
+    const { isLoading, error, sendRequest: fetchFoods } = useHttp();
     const [foodList, setFoodList] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    useEffect(() => {
-        try {
-            (async () => {
-                const requestUrl = "./assets/data-home/food.json";
 
-                await fetch(requestUrl, {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Accept: "application/json",
-                    },
-                })
-                    .then(function (response) {
-                        return response.json();
-                    })
-                    .then((data) => {
-                        setFoodList(data.food);
-                    });
-                // setTimeout(() => {
-                //     setIsLoading(false);
-                // }, 2000);
-                setIsLoading(false);
-            })();
-        } catch (err) {
-            console.error(err);
-        }
-    }, []);
+    useEffect(() => {
+        const transformData = (data) => {
+            let loadedFoods = [];
+
+            for (const foodKey in data) {
+                loadedFoods.push({
+                    id: foodKey,
+                    name: data[foodKey].name,
+                    description: data[foodKey].description,
+                    image: data[foodKey].image,
+                    price: data[foodKey].price,
+                });
+            }
+
+			
+            setFoodList(loadedFoods);
+        };
+
+        fetchFoods(
+            {
+                url: "https://react-http-63d69-default-rtdb.asia-southeast1.firebasedatabase.app/food.json",
+            },
+            transformData
+        );
+    }, [fetchFoods]);
 
     return (
         <Box my={48} w="full" px={{ base: "2%", md: "10%", lg: "20%" }}>
-            {isLoading ? (
+            {error && (
+                <Text fontSize="20px" color="tomato" textAlign="center">
+                    Something went wrong, cannot fetch data! We are so sorry for
+                    the inconvenience!
+                </Text>
+            )}
+            {!error && isLoading ? (
                 <Progress size="lg" isIndeterminate />
             ) : (
                 <SimpleGrid
