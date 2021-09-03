@@ -24,7 +24,7 @@ import {
 import { AiFillBell } from "react-icons/ai";
 
 import { RiShoppingCartLine } from "react-icons/ri";
-import Cart from "../../UI/Cart";
+import Cart from "../../Cart/Cart";
 import CartContext from "../../../store/cart-context";
 
 const LoginBar = (props) => {

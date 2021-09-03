@@ -61,6 +61,12 @@ const CartContextProvider = (props) => {
 		setCartList(tempCart);
 	};
 
+	const removeAllItemsFromCartHandler = (id) => {
+		let tempCart = [];
+		setCartList(tempCart);
+		setTotalPrice(0);
+	};
+
     const cartContext = {
         cartList: cartList,
 		isCartChange: isCartChange,
@@ -69,6 +75,7 @@ const CartContextProvider = (props) => {
         addItem: addItemToCartHandler,
         changeAmountHandler: onChangeAmountHandler,
         removeItem: removeItemfromCartHandler,
+		removeAllItems: removeAllItemsFromCartHandler
     };
 
     return (

@@ -158,7 +158,7 @@ const Carousel = () => {
                     color={useColorModeValue("gray.600", "gray.200")}
                 >
                     Choose your favorite meal from our broad selection of
-                    available meals and enjoy a delicious lumchor dinner at
+                    available meals and enjoy a delicious lunch or dinner at
                     home.
                 </Text>
                 <Text

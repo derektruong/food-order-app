@@ -6,7 +6,7 @@ import useHttp from "../../../hooks/use-http";
 const FoodList = (props) => {
     const { isLoading, error, sendRequest: fetchFoods } = useHttp();
     const [foodList, setFoodList] = useState([]);
-
+	
     useEffect(() => {
         const transformData = (data) => {
             let loadedFoods = [];
@@ -27,7 +27,7 @@ const FoodList = (props) => {
 
         fetchFoods(
             {
-                url: "https://react-http-63d69-default-rtdb.asia-southeast1.firebasedatabase.app/food.json",
+                url: process.env.REACT_APP_FIREBASE_URL + "/food.json",
             },
             transformData
         );

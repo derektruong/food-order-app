@@ -36,8 +36,6 @@ const NavBar = (props) => {
     const mobileNav = useDisclosure();
     const [isMobileView] = useMediaQuery("(min-width: 500px)");
 
-    console.log(props.cart);
-
     return (
         <React.Fragment>
             <chakra.header
