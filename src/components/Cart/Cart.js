@@ -12,6 +12,7 @@ import {
     ModalFooter,
     ModalCloseButton,
     useToast,
+    useColorModeValue,
 } from "@chakra-ui/react";
 
 import CartList from "./CartList";
@@ -57,6 +58,9 @@ const Cart = (props) => {
     const { isLoading, error, sendRequest: pushBill } = useHttp();
 
     const afterSubmitSuccessHandler = (data) => {
+        if (error) {
+            return;
+        }
         props.onClose();
         setTimeout(
             () =>
@@ -89,12 +93,13 @@ const Cart = (props) => {
                     totalPrice: ctx.totalPrice,
                 },
             },
-			afterSubmitSuccessHandler
+            afterSubmitSuccessHandler
         );
     };
 
     return (
         <Modal
+            color={useColorModeValue("white", "gray.800")}
             isOpen={props.isOpen}
             onClose={props.onClose}
             size="4xl"
@@ -107,12 +112,7 @@ const Cart = (props) => {
                 <ModalHeader fontWeight="bold">YOUR CART</ModalHeader>
                 <ModalCloseButton />
                 {isCartEmpty && !isLoading && !error && (
-                    <Text
-                        fontSize="20px"
-                        color="white"
-                        textAlign="center"
-                        mb="40px"
-                    >
+                    <Text fontSize="20px" textAlign="center" mb="40px">
                         Cart is empty, lets go around and get some foods 😊
                     </Text>
                 )}
@@ -133,6 +133,7 @@ const Cart = (props) => {
                         emptyColor="gray.200"
                         color="blue.500"
                         size="xl"
+						my="10px"
                     />
                 )}
 

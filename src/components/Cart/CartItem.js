@@ -47,6 +47,7 @@ const CartItem = (props) => {
     const changeAmountHandler = (amount) => {
         dispatchCart({ type: "CHANGE_AMOUNT", id: props.id, amount: amount });
         // console.log(cartState.idChangeAmountItem, amount);
+        if (amount.toString().trim() === "") amount = 1;
         ctx.changeAmountHandler(cartState.idChangeAmountItem, amount);
     };
 

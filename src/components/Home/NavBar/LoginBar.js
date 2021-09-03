@@ -125,7 +125,7 @@ const LoginBar = (props) => {
                     <Avatar
                         size="sm"
                         name="Dan Abrahmov"
-                        src="https://bit.ly/dan-abramov"
+                        src="https://avatars.githubusercontent.com/u/58778364?v=4"
                     />
                 </MenuButton>
                 <MenuList>

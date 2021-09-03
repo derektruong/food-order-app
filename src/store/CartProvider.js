@@ -39,7 +39,9 @@ const CartContextProvider = (props) => {
 
     const onChangeAmountHandler = (id, amount) => {
         for (let i = 0; i < cartList.length; i++) {
+			
             if (cartList[i].id === id) {
+				if(+cartList[i].amount === amount) break;
                 setTotalPrice(
                     totalPrice +
                         +cartList[i].price * (amount - +cartList[i].amount)

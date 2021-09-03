@@ -26,7 +26,7 @@ import { FaMoon, FaSun } from "react-icons/fa";
 import { RiContactsFill } from "react-icons/ri";
 
 import LoginBar from "./LoginBar";
-import LogoutBar from "./LogoutBar";
+// import LogoutBar from "./LogoutBar";
 
 const NavBar = (props) => {
     const { toggleColorMode } = useColorMode();

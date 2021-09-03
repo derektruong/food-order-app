@@ -111,7 +111,7 @@ const OrderForm = (props) => {
                 </Button>
 
                 <Alert
-                    status={!isFormValid ? "error" : "success"}
+                    status={!isFormValid ? "info" : "success"}
                     height="40px"
                     width="400px"
                     borderRadius="5px"
@@ -119,7 +119,7 @@ const OrderForm = (props) => {
                 >
                     <AlertIcon />
                     {!isFormValid
-                        ? "Your information is invalid, please checkout!"
+                        ? (isOpen ? "Fill your infomation into form below." : "Click here to checkout!")
                         : "Information valid, order now 🐱‍🏍"}
                 </Alert>
             </Flex>

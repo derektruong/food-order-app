@@ -21,7 +21,7 @@ const FoodItem = (props) => {
 
 
 	const changeAmountHandler = (amount) => {
-		setAmountState(amount);
+		setAmountState(amount.trim() === "" ? 1 : amount);
 	}
 
 	const clickAddHandler = () => {
