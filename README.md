@@ -66,6 +66,7 @@ Food order application with react and golang.
 <pre><code>
   $ git clone https://github.com/derektruong/food-order-app.git<br>
   $ cd /food-order-app
+  $ npm install
   $ npm run start
   # Visit http://localhost:3000
 </pre></code>
